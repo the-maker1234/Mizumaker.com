@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MizuMaker's Website</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            line-height: 1.6; 
+            color: #333; 
+            background-image: url('bacon5background.png');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            /* Default animation speed */
+            animation: scrollBackground 60s linear infinite;
+        }
+
+        @keyframes scrollBackground {
+            from { background-position: 0 0; }
+            to { background-position: -1000px 1000px; }
+        }
+
+        header { background: rgba(44, 62, 80, 0.9); color: white; padding: 2rem; text-align: center; }
+        nav { background: rgba(52, 73, 94, 0.9); padding: 1rem; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #e74c3c; }
+
+        /* Settings Box Style */
+        .settings-container {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .settings-container h3 { margin-top: 0; }
+        .setting-item { margin-bottom: 15px; }
+        label { display: block; font-size: 0.9rem; margin-bottom: 5px; }
+
+        footer { text-align: center; padding: 2rem; background: rgba(44, 62, 80, 0.9); color: white; margin-top: 2rem; }
+        
+        audio { display: none; }
+    </style>
+</head>
+<body id="main-body">
+
+<header>
+    <h1>MizuMaker's website</h1>
+    <p>I used ai for this, until I actually learn more about html.</p>
+</header>
+
+<audio id="bg-music" loop>
+    <source src="FHPause.wav" type="audio/wav">
+</audio>
+
+<nav>
+    <a href="pre redemption/index.html">LOS SEBS.</a>
+    <a href="Misc/index.html">Miscellaneous.</a> <a href="https://www.youtube.com/@MizuMaker1234" target="_blank">My Channel</a>
+</nav>
+
+<div class="settings-container">
+    <h3>Settings</h3>
+    
+    <div class="setting-item">
+        <label for="volume-control">Music Volume</label>
+        <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
+    </div>
+
+    <div class="setting-item">
+        <label for="speed-control">Scroll Speed (Slower <-> Faster)</label>
+        <input type="range" id="speed-control" min="10" max="200" step="10" value="60">
+    </div>
+</div>
+
+<script>
+    const audio = document.getElementById('bg-music');
+    const body = document.getElementById('main-body');
+    const volumeSlider = document.getElementById('volume-control');
+    const speedSlider = document.getElementById('speed-control');
+
+    // Start audio on first click
+    window.addEventListener('click', function() {
+        audio.play();
+    }, { once: true });
+
+    // Handle Volume Changes
+    volumeSlider.addEventListener('input', (e) => {
+        audio.volume = e.target.value;
+    });
+
+    // Handle Speed Changes (Inverts the value because more seconds = slower)
+    speedSlider.addEventListener('input', (e) => {
+        // We set the animationDuration style directly
+        body.style.animationDuration = e.target.value + 's';
+    });
+</script>
+
+</body>
+</html>
